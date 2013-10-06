@@ -29,10 +29,6 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
         tasks: ['coffee:dist']
       },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
-      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
@@ -69,7 +65,55 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           middleware: function (connect) {
+            grunt.log.write('middleware');
+
+            var getById = function (array, id) {
+
+                var a = array.filter(function(elem) {
+                    return elem.id == id;
+                });
+
+                if (a.length > 0)
+                    return a[0];
+                return {};
+            };
+
+            var dataLoader = function (datafile) {
+                return function (content){
+                    var id = parseInt( content.parameters.id );
+                    var data = grunt.file.readJSON(datafile);
+
+                    if (id)
+                        return getById(data, id);
+                    return data;
+                }
+            };
+
+            var rest = require('connect-rest');
+
+            rest.context('/api');
+            rest.get(
+                      [{ path: '/games/?id', version: '>=1.0.0'}],
+                        dataLoader('data/games.json')
+                    );
+
+            rest.get(
+                      [{ path: '/locations/?id', version: '>=1.0.0'}],
+                        dataLoader('data/locations.json')
+                    );
+
+            rest.get(
+                      [{ path: '/pools/?id', version: '>=1.0.0'}],
+                        dataLoader('data/pools.json')
+                    );
+
+            rest.get(
+                      [{ path: '/teams/?id', version: '>=1.0.0'}],
+                        dataLoader('data/teams.json')
+                    );
+
             return [
+                rest.rester(),
               lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
@@ -127,26 +171,6 @@ module.exports = function (grunt) {
           dest: '.tmp/scripts',
           ext: '.js'
         }]
-      }
-    },
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false
-      },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
-        }
       }
     },
     // not used since Uglify task does concat,
@@ -267,12 +291,10 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'compass:server',
         'copy:styles'
       ],
       dist: [
         'coffee',
-        'compass:dist',
         'copy:styles',
         'imagemin',
         'svgmin',

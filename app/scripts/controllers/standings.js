@@ -1,49 +1,18 @@
 'use strict';
 
 angular.module('freefootieApp')
-  .controller('StandingsCtrl', function ($scope) {
+  .controller('StandingsCtrl', function ($scope, $resource) {
 
-$scope.standings = {
-  'North Pool': [
-    {
-			name: 'Ronald\'s Rhutabagas',
-			wins: 5,
-			losses: 3,
-			ties: 0
-		},
-    {
-      name: 'Matilda\'s Moose',
-      wins: 3,
-      losses: 3,
-      ties: 2
-    },
-    {
-      name: 'Dave\'s Ducks',
-      wins: 0,
-      losses: 5,
-      ties: 3
-    }
-  ],
-  'South Pool': [
-    {
-      name: 'Ronald\'s Rhutabagas',
-      wins: 5,
-      losses: 3,
-      ties: 0
-    },
-    {
-      name: 'Matilda\'s Moose',
-      wins: 3,
-      losses: 3,
-      ties: 2
-    },
-    {
-      name: 'Dave\'s Ducks',
-      wins: 0,
-      losses: 5,
-      ties: 3
-    }
-  ]
-  }; 
+      var poolsSrc = $resource('/api/pools/');
+      var teamsSrc = $resource('/api/teams/');
+
+      poolsSrc.query(function(pools) {
+        teamsSrc.query(function(teams) {
+              $scope.standings = {};
+              pools.forEach(function (elem){
+                  $scope.standings[elem.name] = teams.filter(function (t) { return elem.id === t.pool; } );
+              });
+        });
+      });
 
   });

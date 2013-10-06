@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('freefootieApp', [])
+angular.module('freefootieApp', ['ngResource'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/ref', {

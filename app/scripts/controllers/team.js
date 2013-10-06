@@ -1,22 +1,42 @@
 'use strict';
 
 angular.module('freefootieApp')
-  .controller('TeamCtrl', function ($scope) {
+.controller('TeamCtrl', function ($scope, $resource) {
 
-  	$scope.games = [
-  		{
-  			location: 'St Mary\'s',
-  			time: new Date(),
-  			home: 'Timmy\'s Tigers',
-  			away: 'Bobby\'s Brontasauruses',
-  			transportation: 'Walking'
-  		},
-      {
-        location: 'Downtown Core',
-        time: new Date(),
-        home: 'Susan\'s Ostriches',
-        away: 'Timmy\'s Tigers',
-        transportation: 'Bus'
-      }
-  	]; 
-  });
+    var currentTeam = 2; //this should be input as a parameter!
+
+    var teamsSrc = $resource('/api/teams/');
+    var locationsSrc = $resource('/api/locations/');
+    var gamesSrc = $resource('/api/games/');
+
+    teamsSrc.query(function(teams){
+
+        $scope.team = teams.filter(function(t){t.id === currentTeam})[0];
+
+        var teamNames = {};
+        teams.forEach(function (t){
+            teamNames[t.id] = t.name;
+        });
+
+        gamesSrc.query(function(games) {
+            locationsSrc.query(function(locations){
+                var locationNames = {};
+                locations.forEach(function (l){
+                    locationNames[l.id] = l.name;
+                });
+
+                games = games.filter(function(g){
+                    return g.home === currentTeam || g.away === currentTeam;
+                });
+
+                games.forEach(function (g) {
+                    g.location = locationNames[g.location];
+                    g.time = new Date(g.time);
+                    g.home = teamNames[g.home];
+                    g.away = teamNames[g.away];
+                });
+                $scope.games = games;
+            });
+        });
+    });
+});

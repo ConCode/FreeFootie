@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Ronald's Rhutabagas",
+        "wins": 5,
+        "losses": 3,
+        "ties": 0,
+        "pool": 1
+    },
+    {
+        "id": 2,
+        "name": "Matilda's Moose",
+        "wins": 3,
+        "losses": 3,
+        "ties": 2,
+        "pool": 1
+    },
+    {
+        "id": 3,
+        "name": "Dave's Ducks",
+        "wins": 0,
+        "losses": 5,
+        "ties": 3,
+        "pool": 1
+    },
+    {
+        "id": 4,
+        "name": "Jack's Jackalopes",
+        "wins": 1,
+        "losses": 5,
+        "ties": 2,
+        "pool": 2
+    },
+    {
+        "id": 5,
+        "name": "Zebidiah's Zebras",
+        "wins": 2,
+        "losses": 4,
+        "ties": 2,
+        "pool": 2
+    },
+    {
+        "id": 6,
+        "name": "Gertrude's Geese",
+        "wins": 4,
+        "losses": 1,
+        "ties": 3,
+        "pool": 2
+    }
+]
