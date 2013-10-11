@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('freefootieApp', ['ngResource'])
+angular.module('freefootieApp', ['ngResource', 'google-maps'])
   .config(function ($routeProvider) {
     $routeProvider
     .when('/ref/game/:id', {
@@ -23,12 +23,22 @@ angular.module('freefootieApp', ['ngResource'])
         templateUrl: 'views/standings.html',
         controller: 'StandingsCtrl'
       })
+        .when('/locationMap/:id', {
+        templateUrl: 'views/location-map.html',
+        controller: 'LocationMapCtrl'
+      })
       .otherwise({
         redirectTo: '/standings'
       });
   }).controller('SystemCtrl', function($scope){
     $scope.$on('$routeChangeSuccess', function(_, x){
-      $scope.title = {"RefCtrl": "Referee", "TeamCtrl": "Team", "AdminCtrl":"Administrator", "StandingsCtrl":"Free Footie Standings"}[x.$$route.controller] + ' Portal';
+        $scope.title = {
+            "LocationMapCtrl": "Location",
+            "RefCtrl": "Referee",
+            "TeamCtrl": "Team", 
+            "AdminCtrl": "Administrator",
+            "StandingsCtrl": "Free Footie Standings"
+        }[x.$$route.controller] + ' Portal';
     });
   }).filter('timedistance', function(){
     return function(time) {

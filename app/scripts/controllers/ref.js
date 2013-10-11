@@ -27,7 +27,8 @@ angular.module('freefootieApp')
                   });
 
                   games.forEach(function (g) {
-                      g.location = locationNames[g.location];
+                      g.location = g.location;
+                      g.locationName = locationNames[g.location];
                       g.time = new Date(g.time);
                       g.home = teamNames[g.home];
                       g.away = teamNames[g.away];
@@ -37,8 +38,13 @@ angular.module('freefootieApp')
           });
       });
 
-      $scope.openDetails = function(gameId) {
-        $location.path('ref/game/'+ gameId);
-      }
+      $scope.openDetails = function (gameId) {
+          $location.path('ref/game/' + gameId);
+      };
+
+      $scope.openLocationMap = function (locationId) {
+          $scope.currentLocationId = locationId;
+          $location.path('locationMap/' + locationId);
+      };
       
   });
