@@ -1,0 +1,19 @@
+<body ng-controller="LocationMapCtrl">
+    <span>
+        Name: {{thisLocation.name}}<br />
+        Latitude: {{thisLocation.latitude}}<br />
+        Latitude: {{thisLocation.longitude}}<br />
+    </span>
+    <div class="google-map"
+         center="position.coords"
+         zoom="zoomProperty"
+         markers="markersProperty"
+         latitude="clickedLatitudeProperty"
+         longitude="clickedLongitudeProperty"
+         mark-click="true"
+         draggable="true"
+         fit="false"
+         events="eventsProperty"
+         style="height: 100%; width: 100%">
+    </div>
+</body>
