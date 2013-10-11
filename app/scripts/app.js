@@ -24,7 +24,7 @@ angular.module('freefootieApp', ['ngResource'])
         controller: 'StandingsCtrl'
       })
       .otherwise({
-        redirectTo: '/standings'
+        redirectTo: '/ref'
       });
   }).controller('SystemCtrl', function($scope){
     $scope.$on('$routeChangeSuccess', function(_, x){
