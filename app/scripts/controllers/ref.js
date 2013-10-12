@@ -32,7 +32,14 @@ angular.module('freefootieApp')
                       g.home = teamNames[g.home];
                       g.away = teamNames[g.away];
                   });
-                  $scope.games = games.slice(0,2);
+                  
+                  function isToday(g) {
+                      return ((g.time.getDate() + g.time.getMonth() + g.time.getYear()) 
+                        == (today.getDate() + today.getMonth() + today.getYear()));
+                  }
+
+                  var today = new Date();
+                  $scope.games = games.filter(isToday);
               });
           });
       });

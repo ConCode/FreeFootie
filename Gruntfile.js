@@ -67,6 +67,15 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             grunt.log.write('middleware');
 
+            var transform = function(data) {
+              for (var property in data) {
+                if (data[property] === "<<now>>") {
+                  data[property] = new Date().toISOString();
+                }
+              }
+              return data;
+            };
+
             var getById = function (array, id) {
 
                 var a = array.filter(function(elem) {
@@ -84,8 +93,8 @@ module.exports = function (grunt) {
                     var data = grunt.file.readJSON(datafile);
 
                     if (id)
-                        return getById(data, id);
-                    return data;
+                        return transform(getById(data, id));
+                    return data.map(transform);
                 }
             };
 
