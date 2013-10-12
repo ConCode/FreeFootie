@@ -1,14 +1,14 @@
-
-Home Team <span ng-show="game==currentGame">
-	<button class="topcoat-button">-</button>
-	<input style="vertical-align:middle;" type="text" class="topcoat-text-input" placeholder="Score">
-	<button class="topcoat-button">+</button>
+Home Team
+<span>
+	<button class="topcoat-button" ng-click="decrementScore(1)">-</button>
+	<input style="vertical-align:middle;" type="text" ng-model="home" ng-disabled="true" class="score-input">
+	<button class="topcoat-button" ng-click="incrementScore(1)">+</button>
 <span>
 <br>
 <br>
-Away Team <span ng-show="game==currentGame">
-	<button class="topcoat-button">-</button>
-	<input style="vertical-align:middle;" type="text" class="topcoat-text-input" placeholder="Score">
-	<button class="topcoat-button">+</button>
+Away Team
 <span>
-	
+	<button class="topcoat-button" ng-click="decrementScore(0)">-</button>
+	<input style="vertical-align:middle;" type="text" ng-model="away" ng-disabled="true" class="score-input">
+	<button class="topcoat-button" ng-click="incrementScore(0)">+</button>
+<span>
