@@ -30,7 +30,8 @@ angular.module('freefootieApp')
                 });
 
                 games.forEach(function (g) {
-                    g.location = locationNames[g.location];
+                    g.locationName = locationNames[g.location];
+                    g.location = g.location;
                     g.time = new Date(g.time);
                     g.home = teamNames[g.home];
                     g.away = teamNames[g.away];

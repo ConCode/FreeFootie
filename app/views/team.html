@@ -11,7 +11,7 @@
 	    		<button class="topcoat-button">-</button>
 	    		<input style="vertical-align:middle;" type="text" class="topcoat-text-input" placeholder="Score">
 	    		<button class="topcoat-button">+</button>
-	    		<span>
+	    		</span>
 	    	</div>
 	    	vs
 	    	<div>
@@ -24,7 +24,7 @@
 	    	</div>
 	    </div>
 	    @
-	    <a href="#/">{{game.location}}</a>
+	    <a ng-href="#/locationMap/{{game.location}}">{{game.locationName}}</a>
 	    in
 	    <span class="time">({{game.time | timedistance}})</span>
 	    by
