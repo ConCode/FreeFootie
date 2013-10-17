@@ -1,20 +1,20 @@
 [
     {
         "id": 1,
-        "name": "East Glen School",
-		"latitude": 53.568643,
-		"longitude": -113.447249
+        "name": "Eastglen School",
+		"latitude": 53.56844,
+		"longitude": -113.446072
     },
     {
         "id": 2,
         "name": "Highlands School",
-		"latitude": 53.5701,
-		"longitude": -113.43478
+		"latitude": 53.56946,
+		"longitude": -113.435493
     },
     {
         "id": 3,
-        "name": "St Clair Catholic School",
-		"latitude": 53.571355,
-		"longitude": -113.438081
+        "name": "Queen Elizabeth High School",
+		"latitude": 53.591779,
+		"longitude": -113.487721
     }
 ]

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "~1.0.8",
-    "topcoat": "~0.7.0"
+    "topcoat": "~0.7.0",
+    "angular-google-maps": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
