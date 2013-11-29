@@ -4,7 +4,9 @@
   "dependencies": {
     "express": "~3.4.4",
     "less-middleware": "~0.1.14",
-    "autoprefixer": "*"
+    "autoprefixer": "*",
+    "mongodb": "*",
+    "monk": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
