@@ -20,9 +20,9 @@ angular.module('freefootieApp')
         purpleCards: []
       };
 
-      $scope.addPurpleCard = function(playerNumber){
-        if(playerNumber!=null)
-          $scope.score.purpleCards.push(playerNumber);
+      $scope.addPurpleCard = function(playerNumber, teamId){
+        if(playerNumber!=null && teamId!=null)
+          $scope.score.purpleCards.push({team:teamId,player:playerNumber});
       };
 
       $scope.edit = { submitted: false };

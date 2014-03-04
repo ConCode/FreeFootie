@@ -3878,7 +3878,24 @@ navbar .right {
   width: 120px;
   margin-left: 5px;
   margin-right: 5px;
+  text-align: center;
 }
 .good-behaviour-tab.entering .card-form {
   opacity: 1.0;
+}
+.good-behaviour-tab .btn-group {
+  margin-bottom: 15px;
+}
+.good-behaviour-tab .btn-group button.selected {
+  -webkit-box-shadow: 0 1px 5px #000000 inset;
+  box-shadow: 0 1px 5px #000000 inset;
+  background: white;
+  font-weight: bold;
+  border: none;
+}
+.good-behaviour-tab .btn-left {
+  border-radius: 6px 0 0 6px;
+}
+.good-behaviour-tab .btn-right {
+  border-radius: 0 6px 6px 0;
 }

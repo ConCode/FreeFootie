@@ -5,7 +5,9 @@ angular.module('freefootieApp')
   	return {
       restrict: 'E',
       scope: {
-        commit: '&'
+        commit: '&',
+        teamOne:'=',
+        teamTwo:'='
       },
       template: '<div class="good-behaviour-tab" ng-click="show()" ng-class="{waving: visible, entering: entering}">'
                 +'<div class="card-content">'
@@ -14,8 +16,12 @@ angular.module('freefootieApp')
                   +'<button ng-click="cycle(); $event.stopPropagation();" class="hide-btn">X</button>'
                   +'<div>'
                   +'<form class="card-form">'
-                  +'<input type="text" class="topcoat-text-input" placeholder="player #" ng-model="playerNumber" ng-click="$event.stopPropagation()"/>'
-                   + '<button class="topcoat-button" ng-click="add($event, playerNumber);">Add</button>'
+                  +'<div class="btn-group">'
+                  +'<button class="topcoat-button btn-left" ng-class="{selected: selectedTeam==teamOne.id}" ng-click="selectedTeam=teamOne.id; $event.stopPropagation();">{{teamOne.name}}</button>'
+                  +'<button class="topcoat-button btn-right" ng-class="{selected:  selectedTeam==teamTwo.id}" ng-click="selectedTeam=teamTwo.id; $event.stopPropagation();">{{teamTwo.name}}</button>'
+                  +'</div>'
+                  +'<input type="number" class="topcoat-text-input" placeholder="player #" ng-model="playerNumber" ng-click="$event.stopPropagation()"/>'
+                   + '<button class="topcoat-button--cta" ng-click="add($event, playerNumber, selectedTeam);">Add</button>'
                   +'</form>'
                 +'</div>',
       replace: true,
@@ -34,11 +40,12 @@ angular.module('freefootieApp')
           $scope.entering=!$scope.entering;
         };
 
-        $scope.add = function(e, playerNumber){
-          if(playerNumber!=null && playerNumber!=''){
+        $scope.add = function(e, playerNumber, selectedTeam){
+          if(playerNumber!=null && playerNumber!=null && selectedTeam!=null){
             $scope.commit()(playerNumber);
             $scope.entering=false;
             $scope.playerNumber=null;
+            $scope.selectedTeam=null;
           }
           e.stopPropagation();
         };
