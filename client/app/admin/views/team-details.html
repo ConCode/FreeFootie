@@ -8,19 +8,14 @@
 </div>
 <div class="topcoat-list">
   <ul class="topcoat-list__container">
-    <li class="topcoat-list__item" ng-hide="edit.editing">
+    <li class="topcoat-list__item">
         <property title="Team Name" model="currentTeam.name"></property>
         <property title="Coach" model="currentTeam.coach"></property>
         <property title="Coach Phone" model="currentTeam.phone"></property>
         <property title="Division" model="currentTeam.division" options="division._id as division.name for division in divisions"><property>
 	    </li>
-      <li class="topcoat-list__item" ng-show="edit.editing" style="line-height: 50px">
-        Coach:
-        <input type="text" class="topcoat-text-input" placeholder="Name" ng-model="currentTeam.coach" style="width: 100px"/>
-        <input type="text" class="topcoat-text-input" placeholder="Phone Number" ng-model="currentTeam.phone"/>
-      </li>
-       <li ng-repeat="player in players" class="topcoat-list__item">
-           {{player.number}}&nbsp - {{player.name}}
+       <li ng-repeat="player in currentTeam.players" class="topcoat-list__item">
+             {{player.number}}&nbsp - {{player.name}}
 	    </li>
       <li class="edit-row" ng-show="needsSave">
         <button class="topcoat-button--cta" ng-click="update(currentTeam)" >Save</button>
@@ -28,4 +23,4 @@
       </li>
   </ul>
 </div>
-<div class="vs" style="margin-top:10px; font-weight: bold" ng-click="edit.editing=true">+</div>
+<div class="vs" style="margin-top:10px; font-weight: bold" ng-click="addPlayer()">+</div>

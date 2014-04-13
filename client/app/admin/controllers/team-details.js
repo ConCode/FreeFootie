@@ -5,16 +5,10 @@ angular.module('freefootieApp')
 
     var Team = $resource('/api/teams/:id');
     var Division = $resource('/api/divisions/:id');
-    var Player = $resource('/api/players/:id');
-
-    $scope.edit = {editing: false};
 
     var teamCheckpoint = $scope.currentTeam = Team.get({id: $routeParams.id}, function(team) {
-      teamCheckpoint = angular.copy(team);
-    	$scope.division = Division.get({id: team.division});
-    	$scope.players = (team.players || []).map(function(player){
-			return Player.get({id: player});
-		});
+       teamCheckpoint = angular.copy(team);
+    });
 
     $scope.$watch('currentTeam', function(newVal) {
       $scope.needsSave = !angular.equals(newVal, teamCheckpoint);
@@ -28,11 +22,13 @@ angular.module('freefootieApp')
              teamCheckpoint = angular.copy(team);
              $scope.needsSave = false;
            });
-    }
+    };
 
     $scope.cancel = function() {
       angular.copy(teamCheckpoint, $scope.currentTeam);
-    }
+    };
 
-  });
+    $scope.addPlayer = function() {
+      $scope.currentTeam.players.push({number: "", name: "New Player"});
+    };
 });
