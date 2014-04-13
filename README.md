@@ -1,42 +1,74 @@
-[![Build Status](https://travis-ci.org/ConCode/FreeFootie.png?branch=master)](https://travis-ci.org/ConCode/FreeFootie)
+Evented I/O for V8 javascript. [![Build Status](https://secure.travis-ci.org/joyent/node.png)](http://travis-ci.org/joyent/node)
+===
 
-Join the conversation [here](https://groups.google.com/forum/#!forum/coding-with-a-conscience)
+### To build:
 
-Prequisites:
-* [nodejs](http://nodejs.org/)
-* gulp (npm package, globally installed)
-* [mongodb](http://mongodb.org/)
+Prerequisites (Unix only):
 
-Starting work on this project is easy. You just need to install the prereqs for your chosen OS. After that, just follow the steps below:
+    * GCC 4.2 or newer
+    * Python 2.6 or 2.7
+    * GNU Make 3.81 or newer
+    * libexecinfo (FreeBSD and OpenBSD only)
 
-    git clone https://github.com/ConCode/FreeFootie
-    cd FreeFootie
-    npm install
-    mongod 
-    gulp init
-    gulp server
+Unix/Macintosh:
 
-Note: We've recently switched to gulp. You may have to re-run npm install and
-get your head around the new, improved build system
+    ./configure
+    make
+    make install
 
-Oh, and you'll have to start mongod however you normally do on your system
+If your python binary is in a non-standard location or has a
+non-standard name, run the following instead:
 
-###Structure
-This nodejs application has its components split between client and server. Files found in the client directory
-have to do with what is actually loaded and rendered by the browser. This means html, javascript (angular components), etc.
-The server directory contains all the backend systems such as the REST api handling, database interactions, etc.
+    export PYTHON=/path/to/python
+    $PYTHON ./configure
+    make
+    make install
 
-The http server is started and configured in server.js. Setting things like port numbers can be done in settings.json.
+Windows:
 
-###Pages
+    vcbuild.bat
 
-#### Admin:
+You can download pre-built binaries for various operating systems from
+[http://nodejs.org/download/](http://nodejs.org/download/).  The Windows
+and OS X installers will prompt you for the location to install to.
+The tarballs are self-contained; you can extract them to a local directory
+with:
 
-- /admin (Dashboard, management portal)
-- /admin/game/:id (Game details)
-- /scheduler (Create games for league play)
-- /admin/team (Administer the teams)
+    tar xzf /path/to/node-<version>-<platform>-<arch>.tar.gz
 
-#### Ref:
+Or system-wide with:
 
-- /ref (Dashboard)
+    cd /usr/local && tar --strip-components 1 -xzf \
+                         /path/to/node-<version>-<platform>-<arch>.tar.gz
+
+### To run the tests:
+
+Unix/Macintosh:
+
+    make test
+
+Windows:
+
+    vcbuild.bat test
+
+### To build the documentation:
+
+    make doc
+
+### To read the documentation:
+
+    man doc/node.1
+
+Resources for Newcomers
+---
+  - [The Wiki](https://github.com/joyent/node/wiki)
+  - [nodejs.org](http://nodejs.org/)
+  - [how to install node.js and npm (node package manager)](http://www.joyent.com/blog/installing-node-and-npm/)
+  - [list of modules](https://github.com/joyent/node/wiki/modules)
+  - [searching the npm registry](http://npmjs.org/)
+  - [list of companies and projects using node](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node)
+  - [node.js mailing list](http://groups.google.com/group/nodejs)
+  - irc chatroom, [#node.js on freenode.net](http://webchat.freenode.net?channels=node.js&uio=d4)
+  - [community](https://github.com/joyent/node/wiki/Community)
+  - [contributing](https://github.com/joyent/node/wiki/Contributing)
+  - [big list of all the helpful wiki pages](https://github.com/joyent/node/wiki/_pages)

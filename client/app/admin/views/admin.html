@@ -1,27 +1,10 @@
 
-
-<div class="list">
-  <ul>
-    <li ng-repeat="game in games" ng-click="go('admindetails/' + game._id)">
-	    <span class="progress" ng-class="game.state || 'notstarted'">
-	    	{{{'inprogress': 'IP', 'complete': 'C', 'null': 'NS'}[game.state]}}
-	    </span>
-	    <div class="team-info">
-	    	<div>{{game.home}}</div>
-	    	<div class="vs">vs</div>
-	    	<div>{{game.away}}</div>
-		</div>
-	    <div class="caret">&#x232a;</div>
-    </li>
-  </ul>
-</div>
-
 <div class="topcoat-button-bar cta">
 	<div class="topcoat-button-bar__item">
 	 	<button class="topcoat-button-bar__button full" ng-click="go('/admin/team')">&nbsp; Teams &nbsp;</button>
 	</div>
 	<div class="topcoat-button-bar__item">
-	  <button class="topcoat-button-bar__button full no-right" ng-click="go('scheduler')">&nbsp; Games &nbsp;</button>
+	  <button class="topcoat-button-bar__button full no-right" ng-click="go('/admin/game')">&nbsp; Games &nbsp;</button>
 	</div>
 	<div class="topcoat-button-bar__item">
 	 	<button class="topcoat-button-bar__button full" ng-click="go('/admin/location')">&nbsp; Locations &nbsp;</button>

@@ -1,8 +1,20 @@
+
+<div class="topcoat-navigation-bar">
+	<div class="topcoat-navigation-bar__item left quarter">
+			<button class="topcoat-icon-button" ng-click="go('admin')">< Back</button>
+    </div>
+	<div class="topcoat-navigation-bar__item center half">
+        <h1 class="topcoat-navigation-bar__title">Locations</h1>
+    </div>
+    <div class="topcoat-navigation-bar__item right quarter">
+		<button class="topcoat-button" ng-click="go('/admin/location/new')">Add</button>
+    </div>
+</div>
+
 <div class="topcoat-list">
 	<ul class="topcoat-list__container" >
-		<li ng-repeat="location in locations | orderBy:'name'" ng-click="go('/admin/location/'+location.id)" class="topcoat-list__item">
+		<li ng-repeat="location in locations | orderBy:'name'" ng-click="go('/admin/location/'+location._id)" class="topcoat-list__item">
 		{{location.name}}
 		</li>
 	</ul>
-	<button class="topcoat-button" ng-click="go('/admin/location/new')">Add</button>
 </div>

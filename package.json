@@ -19,13 +19,11 @@
     "nodemon": "^1.0.15",
     "nodeunit": "~0.8.1",
     "express": "~3.4.4",
-    "bun": "0.0.10",
     "less-middleware": "~0.1.14",
     "autoprefixer": "*",
     "mongojs": "~0.9.8",
     "q": "~1.0.0",
     "ionic": "^0.9.16",
-    "gulp-sass": "^0.7.1",
     "bun": "0.0.10",
     "stream-combiner": "0.0.4"
   },
