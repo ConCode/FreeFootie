@@ -65,3 +65,33 @@ exports.getAll = function(){
 	});
 	return deferred.promise;
 };
+
+exports.getByFilter = function(filter){
+	var deferred = Q.defer();
+	var query = {};
+	if(filter){
+
+		var now = new Date();
+		var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+		if(filter==='today'){
+			var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+			tomorrow.setDate(tomorrow.getDate()+1);
+			query={'date': {'$gte':today, '$lt':tomorrow}};
+		}
+		else if(filter==='week'){
+			var weekFromToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+			weekFromToday.setDate(weekFromToday.getDate()+7);
+			query={'date': {'$gte':today, '$lt':weekFromToday}};
+		}
+	}
+	collection.find(query, function(err, result) {
+		if (err) deferred.reject(new Error(err));
+		else {
+			result.forEach(function(item) {
+				item._id = item._id.toHexString();
+			});
+			deferred.resolve(result);
+		}
+	});
+	return deferred.promise;
+};

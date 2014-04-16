@@ -29,7 +29,11 @@ module.exports = function(collectionName){
 		collection.find( callback );
 	};
 
-}
+	this.find = function(params, callback){
+		collection.find( params, callback );
+	};
+
+};
 
 function convertToDbId(id){
 	return ObjectId(id);

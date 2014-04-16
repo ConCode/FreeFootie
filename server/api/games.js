@@ -3,6 +3,7 @@ var Game = require('../models/game');
 
 exports.get = function(req, res){
 	var id = req.params.id;
+	var filter = req.query.filter;
 	if(id)
 	{
 		repository.getById(id).then(
@@ -10,6 +11,14 @@ exports.get = function(req, res){
 				res.json(result);
 			},
 			createErrorCallback(res));
+	}
+	else if(filter){
+		repository.getByFilter(filter)
+			.then(
+				function(results){
+					res.json(results);
+				},
+				createErrorCallback(res));
 	}
 	else{
 		repository.getAll()

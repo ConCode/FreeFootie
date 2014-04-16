@@ -5,18 +5,18 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form class="form-horizontal" ng-submit="save()">
-                <div class="form-group">
+            <form name="gameForm" class="form-horizontal" ng-submit="save()" novalidate>
+                <div class="form-group" ng-class="{'has-error':gameForm.location.$invalid}">
                     <label class="control-label col-sm-3">Location:</label>
                     <div class="col-sm-9">
-                        <select class="form-control" ng-options="loc._id as loc.name for loc in locations" ng-model="game.location"></select>
+                        <select name="location" class="form-control" ng-options="loc._id as loc.name for loc in locations" ng-model="game.location" required></select>
 
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':gameForm.date.$invalid}">
                     <label class="control-label col-sm-3">Date:</label>
                     <div class="col-sm-9">
-                        <input class="form-control" type="date" ng-model="game.dateobj" value={{item.dateobj}} ng-change="updateDate()"/>
+                        <input name="date" class="form-control" type="date" ng-model="game.dateobj" value={{item.dateobj}} ng-change="updateDate()" required/>
 
                     </div>
                 </div>
@@ -26,10 +26,10 @@
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4">
-                                <select class="form-control" ng-model="game.timeobj.hours" ng-options="hour as hour for hour in hourOptions" ng-change="updateDate()"></select>
+                                <select name="hours" class="form-control" ng-model="game.timeobj.hours" ng-options="hour as hour for hour in hourOptions" ng-change="updateDate()" required></select>
                             </div>
                             <div class="col-xs-4 col-sm-4">
-                               <select class="form-control" ng-model="game.timeobj.minutes" ng-options="minute as formatMinute(minute) for minute in minuteOptions" ng-change="updateDate()"></select>
+                               <select name="minutes" class="form-control" ng-model="game.timeobj.minutes" ng-options="minute as formatMinute(minute) for minute in minuteOptions" ng-change="updateDate()" required></select>
                            </div>
                            <div class="col-xs-4 col-sm-4">
                             <select class="form-control" ng-model="game.timeobj.isPm" ng-change="updateDate()">
@@ -37,30 +37,27 @@
                                 <option value="false">AM</option>
                             </select>
                         </div>
-
-
                     </div>
                 </div>
             </div>
 
 
-            <div class="form-group" style="margin-top:50px;">
+            <div class="form-group" style="margin-top:50px;" ng-class="{'has-error':gameForm.homeTeam.$invalid}">
                 <label class="control-label col-sm-3">Home Team:</label>
                 <div class="col-sm-9">
-                    <select class="form-control" ng-options="team._id as team.name for team in teams" ng-model="game.home" ng-change="updateTeams()"></select>
+                    <select name="homeTeam" class="form-control" ng-options="team._id as team.name for team in teams" ng-model="game.home" ng-change="updateTeams()" required></select>
                 </div>
             </div>
             <div class="form-group">
                  <label class="control-label col-sm-3">Coach:</label>
-
                 <div class="col-sm-9">
                    <p class="form-control-static"><b>{{home.coach}}</b> ({{home.phone}})</p>
                </div>
            </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error':gameForm.awayTeam.$invalid}">
             <label class="control-label col-sm-3">Away Team:</label>
             <div class="col-sm-9">
-               <select class="form-control" ng-options="team._id as team.name for team in teams" ng-model="game.away" ng-change="updateTeams()"></select>
+               <select name="awayTeam" class="form-control" ng-options="team._id as team.name for team in teams" ng-model="game.away" ng-change="updateTeams()" required></select>
            </div>
        </div>
        <div class="form-group">
@@ -82,7 +79,7 @@
         </div>
     </div>
 </div>
-    <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="gameForm.$invalid">Save</button>
 </form>
 </div>
 </div>

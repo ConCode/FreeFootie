@@ -21,9 +21,14 @@ module.exports = function Game(obj){
                     diff = r[1] | 0,
                          hourOffset = Math.floor((Math.random() - 0.5) * 2 * diff),
                          newTime = time.getTime() + hourOffset * 3600000;
-                this.date = new Date(newTime).toISOString();
+                this.date = new Date(newTime);//.toISOString();
             }
         }
+
+
+	if(typeof this.date == 'string')
+		this.date = new Date(this.date);//ensure date object so query filters work..
+
 
 
 	this.ensureRequiredDefaults();

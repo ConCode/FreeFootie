@@ -84,6 +84,9 @@ angular.module('freefootieApp')
       function getTime(date){
         var hours = date.getHours();
         var minutes = date.getMinutes();
+        
+        if(minutes%5!=0)
+          minutes=0;
 
         var isPm = hours >= 12;
 
